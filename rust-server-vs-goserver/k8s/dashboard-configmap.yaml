@@ -66,8 +66,8 @@ data:
             "tooltip": { "mode": "multi", "sort": "desc" }
           },
           "targets": [
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "rate(k6_http_reqs_total{testid=\"hash-go\",run=~\"$run\"}[30s])", "legendFormat": "Go", "range": true, "refId": "A" },
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "rate(k6_http_reqs_total{testid=\"hash-rust\",run=~\"$run\"}[30s])", "legendFormat": "Rust", "range": true, "refId": "B" }
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "sum(rate(k6_http_reqs_total{testid=\"hash-go\",run=~\"$run\"}[30s]))", "legendFormat": "Go", "range": true, "refId": "A" },
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "sum(rate(k6_http_reqs_total{testid=\"hash-rust\",run=~\"$run\"}[30s]))", "legendFormat": "Rust", "range": true, "refId": "B" }
           ],
           "title": "Requests per Second",
           "type": "timeseries"
@@ -101,8 +101,8 @@ data:
             "tooltip": { "mode": "multi", "sort": "desc" }
           },
           "targets": [
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p99{testid=\"hash-go\",run=~\"$run\"}", "legendFormat": "Go", "range": true, "refId": "A" },
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p99{testid=\"hash-rust\",run=~\"$run\"}", "legendFormat": "Rust", "range": true, "refId": "B" }
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p99{testid=\"hash-go\",run=~\"$run\",expected_response=\"true\"}", "legendFormat": "Go", "range": true, "refId": "A" },
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p99{testid=\"hash-rust\",run=~\"$run\",expected_response=\"true\"}", "legendFormat": "Rust", "range": true, "refId": "B" }
           ],
           "title": "Latency p99",
           "type": "timeseries"
@@ -171,8 +171,8 @@ data:
             "tooltip": { "mode": "multi", "sort": "desc" }
           },
           "targets": [
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p95{testid=\"hash-go\",run=~\"$run\"}", "legendFormat": "Go", "range": true, "refId": "A" },
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p95{testid=\"hash-rust\",run=~\"$run\"}", "legendFormat": "Rust", "range": true, "refId": "B" }
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p95{testid=\"hash-go\",run=~\"$run\",expected_response=\"true\"}", "legendFormat": "Go", "range": true, "refId": "A" },
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_req_duration_p95{testid=\"hash-rust\",run=~\"$run\",expected_response=\"true\"}", "legendFormat": "Rust", "range": true, "refId": "B" }
           ],
           "title": "Latency p95",
           "type": "timeseries"
@@ -193,7 +193,7 @@ data:
           "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
           "pluginVersion": "10.0.0",
           "targets": [
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_reqs_total{testid=\"hash-go\",run=~\"$run\"}", "legendFormat": "__auto", "range": true, "refId": "A" }
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "sum(k6_http_reqs_total{testid=\"hash-go\",run=~\"$run\"})", "legendFormat": "__auto", "range": true, "refId": "A" }
           ],
           "title": "Go Total Requests",
           "type": "stat"
@@ -214,7 +214,7 @@ data:
           "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto" },
           "pluginVersion": "10.0.0",
           "targets": [
-            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "k6_http_reqs_total{testid=\"hash-rust\",run=~\"$run\"}", "legendFormat": "__auto", "range": true, "refId": "A" }
+            { "datasource": { "type": "prometheus", "uid": "prometheus" }, "editorMode": "code", "expr": "sum(k6_http_reqs_total{testid=\"hash-rust\",run=~\"$run\"})", "legendFormat": "__auto", "range": true, "refId": "A" }
           ],
           "title": "Rust Total Requests",
           "type": "stat"
